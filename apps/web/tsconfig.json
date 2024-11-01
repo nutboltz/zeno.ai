@@ -1,0 +1,19 @@
+{
+  "extends": "@zeno-ai/typescript-config/remix.json",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/.client/**/*.ts",
+    "**/.client/**/*.tsx"
+  ],
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["./*"]
+    },
+
+    // Vite takes care of building everything, not tsc.
+    "noEmit": true
+  }
+}

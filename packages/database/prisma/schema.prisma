@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+generator types {
+    provider = "prisma-types-export"
+    output   = "../prisma/prisma-types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  firstName         String
+  lastName          String?
+  profilePictureUrl String?
+  primaryEmail      String    @unique
+  files             OriginalFile[]
+  clips             Clip[]
+
+}
+
+model OriginalFile {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String?
+  url       String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  metadata  Json     @default("{}")
+  clips     Clip[]
+
+}
+
+model Clip {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String?
+  url       String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  parent    OriginalFile @relation(fields: [parentId], references: [id])
+  parentId  String
+  metadata  Json     @default("{}")
+
+}
+

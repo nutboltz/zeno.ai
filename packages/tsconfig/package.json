@@ -1,0 +1,10 @@
+{
+    "name": "@zeno-ai/typescript-config",
+    "version": "0.0.1",
+    "private": true,
+    "main": "index.js",
+    "files": [
+      "base.json",
+      "remix.json"
+    ]
+  }
