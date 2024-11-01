@@ -30,9 +30,10 @@ model OriginalFile {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String?
+  thumbnail String?
   url       String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String
+  owner     User     @relation(fields: [ownerEmail], references: [primaryEmail])
+  ownerEmail String
   metadata  Json     @default("{}")
   clips     Clip[]
 
@@ -43,9 +44,10 @@ model Clip {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String?
+  thumbnail String?
   url       String
-  owner     User     @relation(fields: [ownerId], references: [id])
-  ownerId   String
+  owner     User     @relation(fields: [ownerEmail], references: [primaryEmail])
+  ownerEmail   String
   parent    OriginalFile @relation(fields: [parentId], references: [id])
   parentId  String
   metadata  Json     @default("{}")

@@ -44,11 +44,11 @@ import {
       };
 
       const previews = files.map((file, index) => {
-        const imageUrl = URL.createObjectURL(file);
         return <Text key={index}>{file.name}</Text>;
       });
 
       const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        console.log("submitting form");
         event.preventDefault(); // Prevent the default form submission
         reset();
 
@@ -57,11 +57,10 @@ import {
             return;
         }
 
+        const formData = new FormData(event.currentTarget);
         files.forEach((file) => {
             formData.append('file', file);
           });
-
-        const formData = new FormData(event.currentTarget);
 
         fetcher.submit(formData, { action: "/api/upload", method: 'post', encType: 'multipart/form-data' });
       };

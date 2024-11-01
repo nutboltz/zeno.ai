@@ -7,13 +7,21 @@ const prisma = new PrismaClient();
 
 async function main() {
   // Clear existing data
-  await prisma.tea.deleteMany({});
-  await prisma.teaUnits.deleteMany({});
-  await prisma.transaction.deleteMany({});
-  await prisma.transactionDetail.deleteMany({});
-  await prisma.event.deleteMany({});
+  await prisma.user.deleteMany({});
+  await prisma.originalFile.deleteMany({});
+  await prisma.clip.deleteMany({});
   console.info("Cleared existing data 👍");
 
+  // Create users
+  await prisma.user.create({
+    data: {
+      firstName: "Eunice",
+      lastName: "Tan",
+      primaryEmail: "eunicehx920@gmail.com"
+    }
+  })
+
+  console.info("Seeded users 👍");
 }
 
 main()
