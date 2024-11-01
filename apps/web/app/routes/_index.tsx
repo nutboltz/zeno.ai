@@ -1,12 +1,12 @@
-import { type MetaFunction } from "@remix-run/node";
+import { ActionFunctionArgs, type MetaFunction } from "@remix-run/node";
 import { typedjson, useTypedLoaderData } from "remix-typedjson";
 import { Button, Group, TextInput, Text, MultiSelect, Flex, Stack, Grid, Card, Badge, Avatar, SimpleGrid } from "@mantine/core";
 import { TbSearch } from "react-icons/tb";
 import { useAtom } from "jotai";
-import { searchTermAtom } from "~/app/store";
+import { searchTermAtom } from "@app/store";
 import { useNavigate } from "@remix-run/react";
 import { useDisclosure } from "@mantine/hooks";
-import { UploadModal } from "~app/components/UploadModal";
+import { UploadModal } from "@app/components/UploadModal";
 
 export const meta: MetaFunction = () => {
   return [
@@ -18,12 +18,6 @@ export const meta: MetaFunction = () => {
 export const loader = async () => {
   return typedjson({ });
 };
-
-// export async function action({
-//   request,
-//   params,
-// }: ActionFunctionArgs) {
-// }
 
 export default function Index() {
   // const { data: teaList } = useTypedLoaderData<typeof loader>()
@@ -72,3 +66,10 @@ export default function Index() {
   );
 }
 
+// export async function action({
+//   request,
+//   params,
+// }: ActionFunctionArgs) {
+
+  
+// }
